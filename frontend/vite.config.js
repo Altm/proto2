@@ -17,7 +17,7 @@ export default defineConfig({
     proxy: {
       // Proxy API requests during development
       '/api': {
-        target: 'http://backend:3001', // Backend service in Docker
+        target: 'http://backend:8000', // Backend service in Docker
         changeOrigin: true,
         secure: false,
       },

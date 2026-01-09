@@ -6,22 +6,35 @@ __pycache__/
 *.pyd
 .Python
 venv/
+env/
+ENV/
 .venv/
 .env
-.env.local
 .env.*
+!requirements.txt
 
-# Build artifacts
-dist/
+# Build and distribution artifacts
 build/
+dist/
+*.egg
 *.egg-info/
+*.so
+*.dylib
+*.dll
+*.exe
 
-# Logs and temporary files
+# Alembic
+alembic/versions/
+
+# Logs
 *.log
-*.tmp
-*.swp
 
-# Editors
-.vscode/
-.idea/
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```
