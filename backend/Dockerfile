@@ -1,20 +1,12 @@
-# Use Node.js base image
-FROM node:18-alpine
+FROM python:3.11-slim
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install dependencies
-RUN npm install
-
-# Copy source code
 COPY . .
 
-# Expose port
-EXPOSE 3001
+EXPOSE 8000
 
-# Start the application
-CMD ["npm", "start"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

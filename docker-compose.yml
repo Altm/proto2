@@ -12,31 +12,28 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
+      - VUE_APP_API_URL=http://localhost:8000
       - NODE_ENV=development
     depends_on:
       - backend
     networks:
       - app-network
 
-  # Backend API server (placeholder - would be implemented separately)
+  # Backend API server (Python FastAPI application)
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "3001:3001"
+      - "8000:8000"
     volumes:
       - ./backend:/app
-      - /app/node_modules
     environment:
-      - NODE_ENV=development
-      - DB_HOST=database
-      - DB_PORT=5432
-      - DB_NAME=wine_shop
-      - DB_USER=postgres
-      - DB_PASS=password
+      - DATABASE_URL=postgresql://postgres:password@database:5432/wine_shop
+      - REDIS_URL=redis://redis:6379
     depends_on:
       - database
+      - redis
     networks:
       - app-network
 
